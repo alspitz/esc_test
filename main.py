@@ -284,6 +284,7 @@ if __name__ == "__main__":
         #thrust_torque_coeffs = np.polyfit(thrust_avg, torque_avg, 1)
         thrust_torque_coeff = np.linalg.lstsq(np.array((thrusts_fit,)).T, torques_fit, rcond=None)[0][0]
         print("Moment Scale:", thrust_torque_coeff)
+        torque_model_lab = "$\\tau = %0.4fT$" % thrust_torque_coeff
 
         maxrpm = np.max(rpms)
         rpm_range = np.arange(0, maxrpm, 10)
@@ -296,7 +297,7 @@ if __name__ == "__main__":
         thrusts = np.arange(0, max(thrust_avg), 0.1)
         torques = thrust_torque_coeff * thrusts
         output.data.append(Plot("Torque vs. Thrust", THRUST, TORQUE, [Line("Averaged", thrust_avg, torque_avg, "x")]))
-        output.data.append(Plot("Torque vs. Thrust", THRUST, TORQUE, [Line("Torque Model Fit", thrusts, torques, "-")]))
+        output.data.append(Plot("Torque vs. Thrust", THRUST, TORQUE, [Line("Torque Model Fit " + torque_model_lab, thrusts, torques, "-", nosourcelab=True)]))
 
         if args.plot_debug:
           output.data.append(Plot("RPM", TIME, RPM, [Line("RPMs double sanitized", timestamps_double_sanitized, rpms_double_sanitized, "x")]))

@@ -2,6 +2,8 @@
 
 This is a Python package used to plot and analyze data collected for the purpose of characterizing a particular propeller, motor, and ESC configuration (e.g. for quadrotors).
 
+Written with the help of [Xuning Yang](http://xuningyang.com).
+
 [main.py](main.py) computes two models:
 
 * a quadratic model describing thrust as a function of motor RPM
