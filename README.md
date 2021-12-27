@@ -2,8 +2,6 @@
 
 This is a Python package used to plot and analyze data collected for the purpose of characterizing a particular propeller, motor, and ESC configuration (e.g. for quadrotors).
 
-Written with the help of [Xuning Yang](http://xuningyang.com).
-
 [main.py](main.py) computes two models:
 
 * a quadratic model describing thrust as a function of motor RPM
@@ -11,8 +9,8 @@ Written with the help of [Xuning Yang](http://xuningyang.com).
 
 The data sources currently supported are:
 
-* RCBenchmark logs
-* AutoQuad logs, from the ESC32 Configuration Utility
+* [RCBenchmark](https://gitlab.com/TytoRobotics/RCbenchmarkGUI) logs
+* AutoQuad logs, from the [ESC32 Configuration Utility](http://autoquad.org/wiki/wiki/aq-esc32/esc32-configuration-utility)
 
 Additional sources can be used by adding an appropriate class to [formats.py](formats.py).
 
@@ -21,11 +19,17 @@ Sample data from 6 tests is included, all with the three-bladed 7-inch DALPROP T
 * ESC32v3 with T-Motor F40 Pro III 1600 kv (esc32v3-f40)
 * Kotleta 20 with F60 Pro II 1750 kv (duty cycle commands, kotleta-f60-duty)
 * Kotleta 20 with F60 Pro II 1750 kv (closed-loop RPM commands, kotleta-f60-rpm)
-* ESC32v3 with F60 Pro II 1750 kv
-* ESC32v2 with F60 Pro II 1750 kv
-* Aikon BLHeli32 4-in-1 with F80 Pro 1900 kv
+* ESC32v3 with F60 Pro II 1750 kv (esc32v3-f60)
+* ESC32v2 with F60 Pro II 1750 kv (esc32v2-f60)
+* Aikon BLHeli32 4-in-1 with F80 Pro 1900 kv (aikon-f80)
 
 You can add your own data by editing [tests_sample.py](tests_sample.py) or creating Test objects and adding them to [tests.py](tests.py).
+
+The relationship between RPM and thrust should really only be a function of the propeller and it should be independent of the ESC and motor.
+So for all six tests above, the RPM to thrust curves should be fairly similar.
+However, the command and voltage to RPM (and thus to thrust) relationship will depend on the ESC and motor as well.
+
+Written with the help of [Xuning Yang](http://xuningyang.com).
 
 # Usage
 
